@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#090d16"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.4"/>
+  
+  <!-- Optical Fiber Cables Core -->
+  <path d="M12 48 C 24 48, 28 18, 52 18" stroke="#06b6d4" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M12 40 C 26 40, 30 26, 52 26" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M12 32 C 28 32, 32 34, 52 34" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M12 24 C 28 24, 34 42, 52 42" stroke="#818cf8" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Light Beam Pulse Nodes -->
+  <circle cx="52" cy="18" r="4.5" fill="#22d3ee"/>
+  <circle cx="52" cy="18" r="7" stroke="#22d3ee" stroke-width="1.5" stroke-opacity="0.6"/>
+  <circle cx="52" cy="26" r="3.5" fill="#38bdf8"/>
+  <circle cx="52" cy="34" r="3" fill="#60a5fa"/>
+  <circle cx="52" cy="42" r="2.5" fill="#818cf8"/>
+
+  <!-- Origin Pulse -->
+  <circle cx="12" cy="48" r="3.5" fill="#06b6d4"/>
+</svg>

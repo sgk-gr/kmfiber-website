@@ -45,21 +45,18 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO: OPTICAL FIBERS INSTALLATION PHOTO */}
-      <main className="flex-1 flex flex-col justify-center bg-white">
-        <section className="relative overflow-hidden py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-lg bg-slate-950">
-            <div className="relative w-full aspect-[16/9] min-h-[380px] sm:min-h-[500px] lg:min-h-[620px]">
-              <Image
-                src="/images/fiber-installation.jpg"
-                alt="K.M. FIBER - Εγκατάσταση Οπτικών Ινών & Τηλεπικοινωνιακές Υποδομές"
-                fill
-                priority
-                className="object-cover object-center"
-                sizes="(max-width: 1280px) 100vw, 1280px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
-            </div>
+      {/* HERO: FULL-WIDTH RESIDENTIAL FTTH FIBER INSTALLATION PHOTO */}
+      <main className="flex-1 w-full bg-white">
+        <section className="relative w-full overflow-hidden border-b border-slate-200">
+          <div className="relative w-full h-[55vh] sm:h-[68vh] lg:h-[78vh] min-h-[420px] max-h-[850px]">
+            <Image
+              src="/images/indoor-fiber-installation.jpg"
+              alt="K.M. FIBER - Εγκατάσταση Οπτικών Ινών FTTH σε Κτίρια & Οικοδομές"
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="100vw"
+            />
           </div>
         </section>
       </main>

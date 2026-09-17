@@ -2,14 +2,14 @@
 
 @layer base {
   :root {
-    --background: #090d16;
-    --foreground: #f1f5f9;
+    --background: #ffffff;
+    --foreground: #090d16;
   }
 }
 
 body {
-  background-color: #090d16;
-  color: #f1f5f9;
+  background-color: #ffffff;
+  color: #0f172a;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
 }

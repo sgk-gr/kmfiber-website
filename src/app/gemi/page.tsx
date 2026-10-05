@@ -78,6 +78,22 @@ const STATIC_STATUTORY = {
   ],
   documents: [
     {
+      kak: "6206308",
+      title: "Ισολογισμός Χρήσης 2019 και μετά χωρίς εκλογή Ελεγκτών",
+      type: "Ανακοίνωση Καταχώρησης Πρακτικού ΓΣ για την έγκριση και δημοσίευση Οικονομικών Καταστάσεων",
+      dateAssembly: "10/09/2026",
+      dateRegistration: "25/09/2026",
+      url: "https://opendata-api.businessportal.gr/api/opendata/v1/downloadFile?key=assemblyDecision&elementId=6206308"
+    },
+    {
+      kak: "6206536",
+      title: "Καταχώρηση Ιστοσελίδας",
+      type: "Καταχώρηση Ιστοσελίδας (kmfiber.gr)",
+      dateAssembly: "",
+      dateRegistration: "25/09/2026",
+      url: "https://opendata-api.businessportal.gr/api/opendata/v1/downloadFile?key=assemblyDecision&elementId=6206536"
+    },
+    {
       kak: "5684227",
       title: "Πιστοποίηση Καταβολής Αρχικού Εταιρικού Κεφαλαίου",
       type: "Απόφαση Διαχειριστή (Αυτοματοποιημένη Καταχώριση)",
@@ -98,29 +114,38 @@ const STATIC_STATUTORY = {
 
 export default function GemiPage() {
   const [liveData, setLiveData] = useState<any>(null);
+  const [documents, setDocuments] = useState<any[]>(STATIC_STATUTORY.documents);
   const [loading, setLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [dataSource, setDataSource] = useState<'live' | 'fallback'>('fallback');
   const [lastUpdated, setLastUpdated] = useState<string>('');
 
-  useEffect(() => {
-    async function fetchGemi() {
-      try {
-        const res = await fetch('/api/gemi');
-        if (res.ok) {
-          const json = await res.json();
-          if (json.company || json.documents) {
-            setLiveData(json);
-            setDataSource(json.source === 'live_gemi_opendata' ? 'live' : 'fallback');
-            setLastUpdated(json.timestamp || new Date().toISOString());
+  const fetchGemiData = async (forceRefresh = false) => {
+    try {
+      if (forceRefresh) setIsRefreshing(true);
+      const url = forceRefresh ? `/api/gemi?t=${Date.now()}` : '/api/gemi';
+      const res = await fetch(url, { cache: forceRefresh ? 'no-store' : 'default' });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.company || json.documents) {
+          setLiveData(json);
+          setDataSource(json.source === 'live_gemi_opendata' ? 'live' : 'fallback');
+          setLastUpdated(json.timestamp || new Date().toISOString());
+          if (Array.isArray(json.documents) && json.documents.length > 0) {
+            setDocuments(json.documents);
           }
         }
-      } catch (err) {
-        console.warn('Using statutory fallback data for GEMI registry:', err);
-      } finally {
-        setLoading(false);
       }
+    } catch (err) {
+      console.warn('Using statutory fallback data for GEMI registry:', err);
+    } finally {
+      setLoading(false);
+      setIsRefreshing(false);
     }
-    fetchGemi();
+  };
+
+  useEffect(() => {
+    fetchGemiData(false);
   }, []);
 
   return (
@@ -157,7 +182,17 @@ export default function GemiPage() {
             </Link>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={() => fetchGemiData(true)}
+              disabled={isRefreshing}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs text-slate-700 transition-all font-medium disabled:opacity-50 cursor-pointer"
+              title="Άμεση ανανέωση δεδομένων από το Γ.Ε.ΜΗ."
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-cyan-600' : 'text-slate-500'}`} />
+              <span className="hidden sm:inline">{isRefreshing ? 'Ανανέωση...' : 'Ανανέωση ΓΕΜΗ'}</span>
+            </button>
+
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span className="text-slate-700 font-medium">
@@ -360,22 +395,28 @@ export default function GemiPage() {
             <div className="flex items-center gap-2">
               <FileText className="w-5 h-5 text-slate-700" />
               <h3 className="text-lg font-bold text-slate-950">Επίσημες Δημοσιεύσεις &amp; Πιστοποιητικά Γ.Ε.ΜΗ.</h3>
+              <span className="px-2 py-0.5 rounded-full bg-slate-200 text-slate-800 text-xs font-bold">
+                {documents.length}
+              </span>
             </div>
             <span className="text-xs text-slate-600 font-medium">Απευθείας Λήψη PDF</span>
           </div>
 
           <div className="p-6 space-y-4">
-            {STATIC_STATUTORY.documents.map((doc, idx) => (
+            {documents.map((doc, idx) => (
               <div 
                 key={idx}
                 className="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-400 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
               >
                 <div className="space-y-1">
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="px-2 py-0.5 rounded bg-slate-200 text-slate-800 text-xs font-mono font-semibold">
                       ΚΑΚ: {doc.kak}
                     </span>
                     <span className="text-xs text-slate-500">Καταχώριση: {doc.dateRegistration}</span>
+                    {doc.dateAssembly && (
+                      <span className="text-xs text-slate-500">• Απόφαση: {doc.dateAssembly}</span>
+                    )}
                   </div>
                   <h4 className="text-base font-bold text-slate-950">{doc.title}</h4>
                   <p className="text-xs text-slate-600">{doc.type}</p>

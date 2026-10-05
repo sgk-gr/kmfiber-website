@@ -50,6 +50,8 @@ The company specializes in telecommunications infrastructure, fiber optic networ
   - 81220200: Υπηρεσίες εξειδικευμένου καθαρισμού
 
 ### Official GEMI Publications / Documents
+- **Ισολογισμός Χρήσης & Οικονομικές Καταστάσεις (ΚΑΚ 6206308):** ΙΚΕ - (Αυτοματοποιημένη Καταχώριση) Ισολογισμός Χρήσης 2019 και μετά χωρίς εκλογή Ελεγκτών (Απόφαση ΓΣ 10/09/2026, Καταχώριση 25/09/2026, Direct URL: `https://opendata-api.businessportal.gr/api/opendata/v1/downloadFile?key=assemblyDecision&elementId=6206308`).
+- **Καταχώρηση Ιστοσελίδας (ΚΑΚ 6206536):** ΙΚΕ - (Αυτοματοποιημένη Καταχώριση) Ιστοσελίδα kmfiber.gr (Καταχώριση 25/09/2026, Direct URL: `https://opendata-api.businessportal.gr/api/opendata/v1/downloadFile?key=assemblyDecision&elementId=6206536`).
 - **Απόφαση Διαχειριστή (ΚΑΚ 5684227):** ΙΚΕ - (Αυτοματοποιημένη Καταχώριση) Πιστοποίηση Καταβολής Αρχικού Εταιρικού Κεφαλαίου (Απόφαση 17/11/2025, Καταχώριση 05/12/2025, Direct URL: `https://opendata-api.businessportal.gr/api/opendata/v1/downloadFile?key=assemblyDecision&elementId=5684227`).
 - **Ανακοίνωση Σύστασης:** Επίσημο έγγραφο ΥΜΣ / ΓΕΜΗ (`https://eyms.businessportal.gr/preview/61bd6831754437426372de849bd1d442/announcement-certificate/print`).
 

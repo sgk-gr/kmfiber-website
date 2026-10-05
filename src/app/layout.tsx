@@ -46,9 +46,12 @@ export const metadata: Metadata = {
     description: 'Δίκτυα Οπτικών Ινών FTTH/FTTB, Οριζόντιες Διατρήσεις & Εγκαταστάσεις Εξοπλισμού Τηλεπικοινωνιών.',
   },
   icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/icon.svg',
+    icon: [
+      { url: '/images/logo.jpg' },
+      { url: '/favicon.ico' },
+    ],
+    shortcut: '/images/logo.jpg',
+    apple: '/images/logo.jpg',
   },
 };
 

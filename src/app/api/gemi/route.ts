@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 300; // Cache for 5 minutes
 
 function formatDate(dateStr: string | null | undefined): string {
@@ -23,10 +24,10 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const isForceRefresh = searchParams.has('refresh') || searchParams.has('t');
 
-  const fetchOptions: RequestInit = {
+  const fetchOptions: any = {
     headers,
     signal: AbortSignal.timeout(10000),
-    ...(isForceRefresh ? { cache: 'no-store' } : {})
+    ...(isForceRefresh ? { cache: 'no-store' } : { next: { revalidate: 300 } })
   };
 
   try {
